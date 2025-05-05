@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saylani Form Layout Demo - Improved</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for specific elements if needed */
+    body {
+      font-family: 'Arial', sans-serif;
+      /* Adjust font as needed */
+      background-color: #f3f4f6;
+      /* Tailwind gray-100 */
+      padding-bottom: 2rem;
+      /* Add some space at the bottom */
+      padding-top: 0;
+      /* Remove top padding if body had it */
+    }
+
+    .form-container {
+      max-width: 800px;
+      /* Max width similar to the form */
+      margin: 2rem auto;
+      /* Center the form container */
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      /* Tailwind rounded-lg */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      /* Tailwind shadow-md */
+      margin-top: 0;
+      /* Adjust margin-top if needed after adding header */
+    }
+
+    .form-input,
+    .form-select {
+      display: block;
+      /* Make elements block level */
+      width: 100%;
+      /* Full width */
+      padding: 0.75rem 1rem;
+      /* Tailwind py-3 px-4 */
+      border: 1px solid #d1d5db;
+      /* Tailwind border-gray-300 */
+      border-radius: 0.375rem;
+      /* Tailwind rounded-md */
+      box-sizing: border-box;
+      /* Include padding and border in the element's total width and height */
+      font-size: 1rem;
+      color: #4b5563;
+      /* Tailwind text-gray-700 */
+      margin-bottom: 1rem;
+      /* Space below each input */
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      /* Remove default outline */
+      border-color: #3b82f6;
+      /* Tailwind border-blue-500 */
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+      /* Tailwind ring-2 ring-blue-500/50 */
+    }
+
+    .form-label {
+      display: block;
+      /* Make label a block element */
+      margin-bottom: 0.5rem;
+      /* Space below label */
+      font-weight: 500;
+      /* Medium font weight */
+      color: #374151;
+      /* Tailwind text-gray-700 */
+    }
+
+    .form-heading {
+      font-size: 1.875rem;
+      /* Tailwind text-3xl */
+      font-weight: 700;
+      /* Tailwind font-bold */
+      text-align: center;
+      color: #1f2937;
+      /* Tailwind text-gray-900 */
+      margin-bottom: 1.5rem;
+      /* Tailwind mb-6 */
+    }
+
+    .submit-button {
+      display: block;
+      /* Make button block level */
+      width: 100%;
+      /* Full width */
+      padding: 0.75rem 1rem;
+      /* Tailwind py-3 px-4 */
+      background-color: #10b981;
+      /* Tailwind bg-green-500 */
+      color: #ffffff;
+      /* Tailwind text-white */
+      font-weight: 600;
+      /* Tailwind font-semibold */
+      border-radius: 0.375rem;
+      /* Tailwind rounded-md */
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .submit-button:hover {
+      background-color: #059669;
+      /* Tailwind hover:bg-green-600 */
+    }
+
+    /* Custom styles for the header/top section */
+    .top-header {
+      background-color: #ffffff;
+      /* White background */
+      padding: 1rem 0;
+      /* Vertical padding */
+      border-bottom: 1px solid #e5e7eb;
+      /* Light gray border at bottom */
+    }
+
+    /* Style for social icons container */
+    .social-icons-container {
+      /* Adjust spacing and size of icons here */
+    }
+
+    .social-icon svg {
+      width: 24px;
+      /* SVG icon size */
+      height: 24px;
+      fill: currentColor;
+      /* Use parent anchor's text color */
+    }
+
+    /* Specific colors for icons if needed, override using Tailwind or here */
+    .social-icon.facebook {
+      color: #3b5998;
+    }
+
+    /* Facebook blue */
+    .social-icon.instagram {
+      color: #E1306C;
+    }
+
+    /* Instagram pink/purple */
+    .social-icon.youtube {
+      color: #FF0000;
+    }
+
+    /* YouTube red */
+
+
+    .student-portal-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid #3b82f6;
+      /* Tailwind border-blue-500 */
+      color: #3b82f6;
+      /* Tailwind text-blue-500 */
+      border-radius: 9999px;
+      /* Tailwind rounded-full */
+      text-decoration: none;
+      font-size: 0.875rem;
+      /* Tailwind text-sm */
+      font-weight: 500;
+      /* Tailwind font-medium */
+      transition: all 0.2s ease-in-out;
+    }
+
+    .student-portal-button:hover {
+      background-color: #eff6ff;
+      /* Tailwind bg-blue-50 */
+    }
+
+    .tabs-section {
+      background-color: #ffffff;
+      padding: 0 0;
+      /* No padding needed here, handled by tab items */
+      border-bottom: 1px solid #e5e7eb;
+      /* Light gray border */
+      margin-bottom: 2rem;
+      /* Space below tabs before form */
+    }
+
+    .tab-item {
+      padding: 1rem 1.5rem;
+      /* Padding inside each tab */
+      text-decoration: none;
+      color: #6b7280;
+      /* Tailwind text-gray-500 */
+      font-weight: 500;
+      position: relative;
+      /* For the active indicator line */
+      transition: color 0.2s ease-in-out;
+    }
+
+    .tab-item:hover {
+      color: #1f2937;
+      /* Tailwind text-gray-900 */
+    }
+
+    .tab-item.active {
+      color: #10b981;
+      /* Green color for active tab */
+      font-weight: 600;
+    }
+
+    .tab-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      /* Position at the bottom border */
+      left: 0;
+      width: 100%;
+      height: 2px;
+      /* Thickness of the line */
+      background-color: #10b981;
+      /* Green line color */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-header">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-between py-4">
+        <div class="flex items-center space-x-4 social-icons-container mb-4 md:mb-0"> <a href="#"
+            class="social-icon facebook hover:opacity-80 transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 5.016 3.667 9.172 8.444 9.855V14.22H8.08v-2.22h2.365V10.1c0-2.35 1.43-3.643 3.543-3.643 1.023 0 1.913.076 2.168.11v2.493h-1.47c-1.16 0-1.385.553-1.385 1.36V12h2.747l-.445 2.22h-2.302v6.17c4.777-.683 8.443-4.84 8.443-9.854C22 6.477 17.523 2 12 2z" />
+            </svg>
+          </a>
+          <a href="#" class="social-icon instagram hover:opacity-80 transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.218 2.428.466.64.247 1.165.59 1.697 1.123.532.533.875 1.068 1.12 1.7.248.637.416 1.363.465 2.428.047 1.066.06 1.405.06 4.12v.08c0 2.717-.01 3.055-.06 4.12-.05 1.065-.218 1.79-.466 2.428-.247.64-.59 1.165-1.123 1.697-.533.532-1.068.875-1.7 1.12-.637.248-1.363.416-2.428.465-1.066.047-1.405.06-4.122.06h-.08c-2.717 0-3.055-.01-4.12-.06-1.065-.05-1.79-.218-2.428-.466-.64-.247-1.165-.59-1.697-1.123-.532-.533-.875-1.068-1.7-1.12-.637-.248-1.363-.416-2.428-.465-.047-1.066-.06-1.405-.06-4.122v-.08c0-2.717.01-3.055.06-4.12.05-1.065.218-1.79.466-2.428.247-.64.59-1.165 1.123-1.697.533-.532 1.068-.875 1.7-1.12.637-.248 1.363-.416 2.428-.465A10.015 10.015 0 0112 2zm0 2c-2.65 0-2.91.01-3.71.05s-1.49.17-1.93.34c-.44.17-.79.42-1.1.73s-.56.66-.73 1.1c-.17.44-.3.95-.34 1.93-.04.8-.05 1.06-.05 3.71v.08c0 2.65.01 2.91.05 3.71s.17 1.49.34 1.93c.17.44.42.79.73 1.1s.66.56.73 1.1c.17-.44.95-.3 1.93-.34s1.06.05 3.71.05h.08c2.65 0 2.91-.01 3.71-.05s1.49-.17 1.93-.34c.44-.17.79-.42 1.1-.73s.56-.66.73-1.1c-.17-.44.3-.95.34-1.93s.05-1.06.05-3.71v-.08c0-2.65-.01-2.91-.05-3.71s-.17-1.49-.34-1.93c-.17-.44-.42-.79-.73-1.1s-.66-.56-1.1-.73c-.44-.17-.95-.3-1.93-.34S14.65 4 12 4zm0 3.65A4.35 4.35 0 1016.35 12 4.35 4.35 0 0012 7.65zm0 2c1.3 0 2.35 1.05 2.35 2.35s-1.05 2.35-2.35 2.35-2.35-1.05-2.35-2.35 1.05-2.35 2.35-2.35zm6.4-.25A1.5 1.5 0 1120.05 9 1.5 1.5 0 0118.4 7.4z" />
+            </svg>
+          </a>
+          <a href="#" class="social-icon instagram hover:opacity-80 transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.218 2.428.466.64.247 1.165.59 1.697 1.123.532.533.875 1.068 1.12 1.7.248.637.416 1.363.465 2.428.047 1.066.06 1.405.06 4.12v.08c0 2.717-.01 3.055-.06 4.12-.05 1.065-.218 1.79-.466 2.428-.247.64-.59 1.165-1.123 1.697-.533.532-1.068.875-1.7 1.12-.637.248-1.363.416-2.428.465-1.066.047-1.405.06-4.122.06h-.08c-2.717 0-3.055-.01-4.12-.06-1.065-.05-1.79-.218-2.428-.466-.64-.247-1.165-.59-1.697-1.123-.532-.533-.875-1.068-1.7-1.12-.637-.248-1.363-.416-2.428-.465-.047-1.066-.06-1.405-.06-4.122v-.08c0-2.717.01-3.055.06-4.12.05-1.065.218-1.79.466-2.428.247-.64.59-1.165 1.123-1.697.533-.532 1.068-.875 1.7-1.12.637-.248 1.363-.416 2.428-.465A10.015 10.015 0 0112 2zm0 2c-2.65 0-2.91.01-3.71.05s-1.49.17-1.93.34c-.44.17-.79.42-1.1.73s-.56.66-.73 1.1c-.17.44-.3.95-.34 1.93-.04.8-.05 1.06-.05 3.71v.08c0 2.65.01 2.91.05 3.71s.17 1.49.34 1.93c.17.44.42.79.73 1.1s.66.56.73 1.1c.17.44.95-.3 1.93-.34s1.06.05 3.71.05h.08c2.65 0 2.91-.01 3.71-.05s1.49-.17 1.93-.34c.44-.17.79-.42 1.1-.73s.56-.66.73-1.1c-.17-.44.3-.95.34-1.93s.05-1.06.05-3.71v-.08c0-2.65-.01-2.91-.05-3.71s-.17-1.49-.34-1.93c-.17-.44-.42-.79-.73-1.1s-.66-.56-1.1-.73c-.44-.17-.95-.3-1.93-.34S14.65 4 12 4zm0 3.65A4.35 4.35 0 1016.35 12 4.35 4.35 0 0012 7.65zm0 2c1.3 0 2.35 1.05 2.35 2.35s-1.05 2.35-2.35 2.35-2.35-1.05-2.35-2.35 1.05-2.35 2.35-2.35zm6.4-.25A1.5 1.5 0 1120.05 9 1.5 1.5 0 0118.4 7.4z" />
+            </svg>
+          </a>
+          <a href="#" class="social-icon youtube hover:opacity-80 transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm4.996 8.976l-4.774 2.99a.76.76 0 01-.804 0l-4.773-2.99a.75.75 0 01-.01-1.252.751.751 0 01.741-.057l4.031 2.512 4.03-2.513a.75.75 0 01.742.058.76.76 0 01-.01 1.252z" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="flex flex-col items-center text-center mb-4 md:mb-0 flex-grow">
+          <img src="https://www.saylaniwelfare.com/static/media/logo_saylaniwelfare.22bf709605809177256c.png"
+            alt="Saylani Logo" class="h-12 mb-2 object-contain">
+          <h1 class="text-xl md:text-2xl font-bold text-gray-800 mt-2">Registration Form - SMIT</h1>
+          <p class="text-gray-600 text-sm mt-1">Services - Education - Registration</p>
+        </div>
+
+        <div class="flex items-center">
+          <a href="https://portal.saylaniwelfare.com/" class="student-portal-button">Student portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-section">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-center md:justify-start space-x-4 md:space-x-8 border-b border-gray-200">
+        <a href="#" class="tab-item active">Registration</a> <a href="#" class="tab-item">Download ID Card</a>
+        <a href="#" class="tab-item">Results</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-container">
+    <form action="#" method="POST">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
+        <div>
+          <label for="country" class="form-label">Select Country</label>
+          <select id="country" name="country" class="form-select">
+            <option value="">Select country</option>
+            <option value="pakistan">Pakistan</option>
+          </select>
+        </div>
+        <div>
+          <label for="city" class="form-label">Select City</label>
+          <select id="city" name="city" class="form-select">
+            <option value="">Select city</option>
+            <option value="karachi">Karachi</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="course" class="form-label">Select Course or Event</label>
+          <select id="course" name="course" class="form-select">
+            <option value="">Select course or event</option>
+            <option value="web">Web Development</option>
+          </select>
+        </div>
+        <div>
+          <label for="proficiency" class="form-label">Select your computer proficiency</label>
+          <select id="proficiency" name="proficiency" class="form-select">
+            <option value="">Select your computer proficiency</option>
+            <option value="beginner">Beginner</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="full_name" class="form-label">Full Name</label>
+          <input type="text" id="full_name" name="full_name" class="form-input" placeholder="Full Name">
+        </div>
+        <div>
+          <label for="father_name" class="form-label">Father Name</label>
+          <input type="text" id="father_name" name="father_name" class="form-input" placeholder="Father Name">
+        </div>
+
+        <div>
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="Email">
+        </div>
+        <div>
+          <label for="phone" class="form-label">Phone</label>
+          <input type="tel" id="phone" name="phone" class="form-input" placeholder="Phone">
+        </div>
+
+        <div>
+          <label for="cnic" class="form-label">CNIC</label>
+          <input type="text" id="cnic" name="cnic" class="form-input" placeholder="CNIC">
+        </div>
+        <div>
+          <label for="father_cnic" class="form-label">Father's CNIC (Optional)</label>
+          <input type="text" id="father_cnic" name="father_cnic" class="form-input"
+            placeholder="Father's CNIC (Optional)">
+        </div>
+
+        <div>
+          <label for="dob" class="form-label">Date of birth</label>
+          <input type="date" id="dob" name="dob" class="form-input">
+        </div>
+        <div>
+          <label for="gender" class="form-label">Select gender</label>
+          <select id="gender" name="gender" class="form-select">
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="address" class="form-label">Address</label>
+          <input type="text" id="address" name="address" class="form-input" placeholder="Address">
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="qualification" class="form-label">Last qualification</label>
+          <input type="text" id="qualification" name="qualification" class="form-input"
+            placeholder="Last qualification">
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="laptop" class="form-label">Do you have a Laptop?</label>
+          <select id="laptop" name="laptop" class="form-select">
+            <option value="">Do you have a Laptop?</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="picture" class="form-label">Picture</label>
+          <input type="file" id="picture" name="picture" class="form-input">
+          <p class="text-sm text-gray-500 mt-1">With white or blue background. File size must be less than 1MB. Format:
+            jpeg, jpg, png. Upload your latest passport size picture. Your Face should be clearly visible without any
+            Glasses.</p>
+        </div>
+
+      </div>
+      <div class="mt-6 text-sm text-gray-600">
+        <p>I hereby, solemnly declare that the data and facts mentioned herein are true and correct to the best of my
+          knowledge. Further, I will abide by all the established and future regulations and policies of SMIT.</p>
+        <p class="mt-2">2. I pledge not to take any irresponsible step or action during the program that I will not be
+          involved in any other activity; political or ethical, but learning during my stay in the program.</p>
+        <p class="mt-2">3. Irrespective of any delay or cancellation, I will report to the time.</p>
+        <p class="mt-2">4. Upon completion of the course, I will complete the required project by SMIT.</p>
+        <p class="mt-2">5. It's mandatory for female students to wear abaya/hijab in the class.</p>
+      </div>
+
+      <div class="flex items-center mt-6 space-x-4">
+        <input type="checkbox" id="not_robot" name="not_robot"
+          class="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded">
+        <label for="not_robot" class="text-gray-700">I'm not a robot</label>
+        <div class="text-xs text-gray-500">
+          reCAPTCHA Placeholder
+        </div>
+      </div>
+
+
+      <button type="submit" class="submit-button mt-6">SUBMIT</button>
+
+    </form>
+  </div>
+
+  <footer class="bg-gray-800 text-white py-8 mt-8 hidden">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2023 Your Brand Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+</body>
+
+</html>
